@@ -19,3 +19,8 @@ Write-Host "For .NET assembly produced by Roslyn:"
 Write-Host "For .NET assembly from IL:"
 & .\On.il.exe
 & .\Off.il.exe
+
+# Dynamically inspect assemblies
+& (Get-Command csc -CommandType Application | Select-Object -First 1).Source Inspect.cs -out:Inspect.exe *> $null
+Write-Host "Inspecting assemblies:"
+& .\Inspect.exe
